@@ -17,26 +17,24 @@ def dsm_to_tensor():
     # Iterate through each patient type
     # healthy or patient
     for patient_type in os.listdir(dicom_dir):
-        # testing small to see if this works
-        if patient_type == "Patient":
-            continue
+        # # testing small to see if this works
+        # if patient_type == "Patient":
+        #     continue
 
         patient_type_dir = os.path.join(dicom_dir, patient_type)
         
         for patient in os.listdir(patient_type_dir):
             
-            # testing small to see if this works
-            if patient != "Patient_1":
-                continue
+            # # testing small to see if this works
+            # if patient != "Patient_1":
+            #     continue
             
             patient_data_dir = os.path.join(patient_type_dir, patient, 'SE0001')
 
             # Read all DICOM files in the directory            
             slices = []
             for curr_slice_name in os.listdir(patient_data_dir):
-                
-                print(curr_slice_name)
-                
+                                
 
                 # add the current patient's slices
                 slice = pydicom.dcmread(os.path.join(patient_data_dir, curr_slice_name))
@@ -63,6 +61,18 @@ def dsm_to_tensor():
 
             # Save the tensor to a file
             torch.save(patient_tensor, path_to_save_image_slice)
+            
+# works for the trivial example
+def load_tensor_test(path):
+    tensor = torch.load(path)
+    print(tensor.shape)
+    print(tensor.dtype)
+    print(tensor.device)
+    print(tensor)
+    
+    # for i in range(tensor.shape[0]):
+    plt.imshow(tensor[0], cmap='gray')
+    plt.show()
 
 
 def dsm_to_png():
@@ -135,4 +145,5 @@ def min_num_slices():
     return min_num_slices
 
 if __name__ == "__main__":
-    dsm_to_tensor()
+    # dsm_to_tensor()
+    load_tensor_test("/Users/ido_dukler/Documents/UCLAYear1/BIOE228/Project/dataset_full_tensors/Healthy_Patient_1.pt")

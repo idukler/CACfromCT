@@ -90,6 +90,7 @@ def dsm_to_png():
             # testing small to see if this works
             if patient != "Patient_1":
                 continue
+        
             
             patient_data_dir = os.path.join(patient_type_dir, patient, 'SE0001')
 
@@ -145,5 +146,6 @@ def min_num_slices():
     return min_num_slices
 
 if __name__ == "__main__":
+    pass
     # dsm_to_tensor()
-    load_tensor_test("/Users/ido_dukler/Documents/UCLAYear1/BIOE228/Project/dataset_full_tensors/Healthy_Patient_1.pt")
+    # load_tensor_test("/Users/ido_dukler/Documents/UCLAYear1/BIOE228/Project/dataset_full_tensors/Healthy_Patient_1.pt")

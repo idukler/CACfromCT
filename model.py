@@ -3,6 +3,17 @@ import torch.nn as nn
 import torchvision.models as models
 import torch.nn.functional as F
 
+# import ssl 
+# import certifi 
+# from urllib.request import urlopen 
+
+# context = ssl._create_unverified_context()
+# request = "https://download.pytorch.org/models/resnet18-f37072fd.pth" 
+
+# urlopen(request,context=context)
+
+# urlopen(request, context=ssl.create_default_context(cafile=certifi.where()))
+
 class CNN_RNN_Regression(nn.Module):
     def __init__(self, cnn_backbone='resnet18', lstm_hidden_size=128, lstm_num_layers=1, dropout_p=0.5):
         super(CNN_RNN_Regression, self).__init__()
@@ -69,4 +80,4 @@ if __name__ == '__main__':
     dummy_input = torch.randn(2, 10, 3, 224, 224)
     model = CNN_RNN_Regression(cnn_backbone='resnet18')
     pred = model(dummy_input)
-    print("Output shape:", pred.shape)  # Should be (2, 1)
+    print("Output shape:", pred)  # Should be (2, 1)
